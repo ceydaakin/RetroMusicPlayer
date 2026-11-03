@@ -173,6 +173,9 @@ dependencies {
     implementation(libs.tankery.circularSeekBar)
 
     implementation(libs.androidx.exoplayer)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
 }
 
 fun getProperties(fileName: String): Properties? {
