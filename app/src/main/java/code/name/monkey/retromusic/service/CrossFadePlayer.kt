@@ -281,6 +281,8 @@ class CrossFadePlayer(context: Context) : AudioManagerPlayback(context),
 
     override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
         mIsInitialized = false
+        // The crossfade animator still holds the players; stop it before one is released
+        cancelFade()
         mp?.release()
         player1 = MediaPlayer()
         player2 = MediaPlayer()

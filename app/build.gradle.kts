@@ -82,6 +82,9 @@ android {
         abortOnError = true
         warning.addAll(listOf("ImpliedQuantity", "Instantiatable", "MissingQuantity", "MissingTranslation", "StringFormatInvalid"))
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
@@ -173,6 +176,9 @@ dependencies {
     implementation(libs.tankery.circularSeekBar)
 
     implementation(libs.androidx.exoplayer)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
 }
 
 fun getProperties(fileName: String): Properties? {
