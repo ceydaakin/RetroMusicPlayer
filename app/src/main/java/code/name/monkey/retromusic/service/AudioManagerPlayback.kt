@@ -77,9 +77,10 @@ abstract class AudioManagerPlayback(val context: Context) : Playback {
             if (intent.action != null
                 && intent.action == AudioManager.ACTION_AUDIO_BECOMING_NOISY
             ) {
-                val serviceIntent = Intent(context, MusicService::class.java)
-                serviceIntent.action = MusicService.ACTION_PAUSE
-                context.startService(serviceIntent)
+                // The receiver is registered on MusicService itself, so pause it directly:
+                // startService() throws BackgroundServiceStartNotAllowedException when the
+                // app is in the background on Android 12+ (#2047).
+                (this@AudioManagerPlayback.context as? MusicService)?.pause()
             }
         }
     }
